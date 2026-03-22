@@ -1,0 +1,98 @@
+/* Game Over Styles */
+
+.game-over {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0f 100%);
+  padding: 20px;
+}
+
+.game-over-container {
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.result-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.result-title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.game-over:has(.result-title:contains('胜利')) .result-title,
+.result-title:has(+ .result-subtitle:contains('胜')) {
+  color: var(--color-gold);
+  text-shadow: 0 0 30px var(--color-gold);
+}
+
+.result-title {
+  color: var(--color-gold);
+  text-shadow: 0 0 30px var(--color-gold);
+}
+
+.result-subtitle {
+  font-size: 1.2rem;
+  color: var(--color-text-dim);
+  margin-bottom: 2rem;
+}
+
+.result-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.result-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: 2px solid;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+  justify-content: center;
+}
+
+.result-btn.primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.result-btn.primary:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-glow);
+}
+
+.result-btn.secondary {
+  background: transparent;
+  border-color: var(--color-text-dim);
+  color: var(--color-text);
+}
+
+.result-btn.secondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}

@@ -1,0 +1,84 @@
+/* Global Styles */
+
+:root {
+  --color-bg-dark: #0a0a0f;
+  --color-bg: #12121a;
+  --color-bg-light: #1a1a25;
+  --color-primary: #00d4ff;
+  --color-secondary: #7b2cbf;
+  --color-accent: #ff006e;
+  --color-gold: #ffd700;
+  --color-success: #00ff88;
+  --color-danger: #ff3366;
+  --color-text: #e0e0e0;
+  --color-text-dim: #888;
+  --color-card-common: #9ca3af;
+  --color-card-rare: #22c55e;
+  --color-card-epic: #a855f7;
+  --color-card-legendary: #f59e0b;
+  --font-main: 'Segoe UI', system-ui, sans-serif;
+  --border-radius: 8px;
+  --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--color-bg-dark);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Card Colors by Rarity */
+.rarity-COMMON { --card-color: var(--color-card-common); }
+.rarity-RARE { --card-color: var(--color-card-rare); }
+.rarity-EPIC { --card-color: var(--color-card-epic); }
+.rarity-LEGENDARY { --card-color: var(--color-card-legendary); }
+
+/* Animations */
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 5px var(--card-color); }
+  50% { box-shadow: 0 0 20px var(--card-color), 0 0 30px var(--card-color); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out;
+}
