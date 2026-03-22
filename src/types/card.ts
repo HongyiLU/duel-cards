@@ -25,6 +25,7 @@ export interface Card {
   currentHealth?: number;  // 当前生命值（战斗中）
   canAttack?: boolean;    // 是否可以攻击（冲锋）
   hasAttacked?: boolean;  // 本回合是否已攻击
+  frozenTurns?: number;   // 冻结回合数
 }
 
 export interface CardData {

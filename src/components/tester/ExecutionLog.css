@@ -1,0 +1,148 @@
+/* ExecutionLog.css */
+
+.execution-log {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.log-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--color-primary, #00d4ff);
+}
+
+.log-count {
+  font-size: 0.8rem;
+  color: var(--color-text-dim, #888);
+}
+
+.log-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.log-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: var(--color-text-dim, #888);
+  text-align: center;
+}
+
+.log-empty .hint {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.log-entry {
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.log-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.log-time {
+  color: var(--color-text-dim, #888);
+  font-size: 0.75rem;
+  min-width: 60px;
+}
+
+.log-card {
+  font-weight: bold;
+  color: var(--color-gold, #ffd700);
+}
+
+.log-effect {
+  flex: 1;
+  color: var(--color-text, #e0e0e0);
+}
+
+.log-changes {
+  margin-top: 0.35rem;
+  padding-left: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.change-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+}
+
+.change-path {
+  color: var(--color-text-dim, #888);
+}
+
+.change-old {
+  color: #ff3366;
+  text-decoration: line-through;
+}
+
+.change-arrow {
+  color: var(--color-text-dim, #888);
+}
+
+.change-new {
+  color: #00ff88;
+  font-weight: bold;
+}
+
+.log-divider {
+  height: 1px;
+  background: rgba(0, 212, 255, 0.1);
+  margin: 0.25rem 0;
+}
+
+.log-overflow {
+  text-align: center;
+  padding: 0.5rem;
+  color: var(--color-text-dim, #888);
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+/* Scrollbar styling */
+.log-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.log-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.log-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.3);
+  border-radius: 3px;
+}
+
+.log-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.5);
+}

@@ -1,0 +1,40 @@
+/* TestMode.css */
+
+.test-mode {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0a0a0f 0%, #12121a 100%);
+}
+
+.mode-tabs {
+  display: flex;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.mode-tabs .tab {
+  flex: 1;
+  padding: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text-dim, #888);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+}
+
+.mode-tabs .tab:hover {
+  color: var(--color-text, #e0e0e0);
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.mode-tabs .tab.active {
+  color: var(--color-primary, #00d4ff);
+  border-bottom-color: var(--color-primary, #00d4ff);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.mode-content {
+  /* content fills remaining space */
+}

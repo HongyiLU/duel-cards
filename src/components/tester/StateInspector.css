@@ -1,0 +1,233 @@
+/* StateInspector.css */
+
+.state-inspector {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.inspector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.inspector-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--color-primary, #00d4ff);
+}
+
+.turn-info {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.turn {
+  padding: 0.25rem 0.75rem;
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: 4px;
+  color: var(--color-primary, #00d4ff);
+}
+
+.phase {
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.phase.PLAYER_TURN {
+  background: rgba(0, 255, 136, 0.1);
+  color: #00ff88;
+}
+
+.phase.ENEMY_TURN {
+  background: rgba(255, 51, 102, 0.1);
+  color: #ff3366;
+}
+
+/* Players State */
+.players-state {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.player-state {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.player-state.enemy {
+  border-left: 3px solid #ff3366;
+}
+
+.player-state.player {
+  border-left: 3px solid #00d4ff;
+}
+
+.player-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.player-header .avatar {
+  font-size: 1.5rem;
+}
+
+.player-header .name {
+  font-weight: bold;
+}
+
+.player-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.stat .label {
+  color: var(--color-text-dim, #888);
+}
+
+.stat.health {
+  flex: 1;
+  min-width: 120px;
+}
+
+.stat.health .bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.stat.health .fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+  transition: width 0.3s;
+}
+
+.stat.health .fill.player {
+  background: linear-gradient(90deg, #00d4ff, #00a8cc);
+}
+
+.stat .value {
+  min-width: 45px;
+  text-align: right;
+}
+
+.hand-preview {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--color-text-dim, #888);
+}
+
+/* Field Divider */
+.field-divider {
+  text-align: center;
+  padding: 0.5rem;
+  color: var(--color-text-dim, #888);
+  font-size: 0.85rem;
+}
+
+/* Field View */
+.field-view {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.field {
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.field-label {
+  font-size: 0.75rem;
+  color: var(--color-text-dim, #888);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.field-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.field-cards .empty {
+  font-size: 0.85rem;
+  color: var(--color-text-dim, #888);
+  font-style: italic;
+}
+
+.mini-card {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.mini-card .attack {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+.mini-card .name {
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mini-card .health {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+/* JSON Details */
+.state-json {
+  margin-top: 1rem;
+  border-top: 1px solid rgba(0, 212, 255, 0.2);
+  padding-top: 0.5rem;
+}
+
+.state-json summary {
+  cursor: pointer;
+  color: var(--color-text-dim, #888);
+  font-size: 0.85rem;
+}
+
+.state-json pre {
+  max-height: 300px;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+}

@@ -1,0 +1,234 @@
+/* EffectExecutor.css */
+
+.effect-executor {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.executor-header h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  color: var(--color-primary, #00d4ff);
+}
+
+.section {
+  margin-bottom: 1rem;
+}
+
+.section h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--color-text-dim, #888);
+}
+
+/* Card Selector */
+.card-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.card-option {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.6rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.8rem;
+}
+
+.card-option:hover {
+  border-color: var(--color-primary, #00d4ff);
+  background: rgba(0, 212, 255, 0.1);
+}
+
+.card-option.selected {
+  border-color: var(--color-primary, #00d4ff);
+  background: rgba(0, 212, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.card-option .card-icon {
+  font-size: 0.9rem;
+}
+
+.card-option .card-name {
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-option .card-cost {
+  background: rgba(0, 212, 255, 0.2);
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  font-size: 0.7rem;
+}
+
+.card-option .empty {
+  color: var(--color-text-dim, #888);
+  font-style: italic;
+}
+
+/* Effect Grid */
+.effect-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.5rem;
+}
+
+.effect-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.6rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--color-text, #e0e0e0);
+}
+
+.effect-btn:hover:not(:disabled) {
+  border-color: var(--color-secondary, #7b2cbf);
+  background: rgba(123, 44, 191, 0.1);
+}
+
+.effect-btn.selected {
+  border-color: var(--color-secondary, #7b2cbf);
+  background: rgba(123, 44, 191, 0.2);
+  box-shadow: 0 0 10px rgba(123, 44, 191, 0.3);
+}
+
+.effect-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.effect-btn .effect-icon {
+  font-size: 1.5rem;
+}
+
+.effect-btn .effect-name {
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+/* Value Config */
+.value-config {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.value-config label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.value-config input {
+  width: 60px;
+  padding: 0.4rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: var(--color-text, #e0e0e0);
+  text-align: center;
+}
+
+.value-config input:focus {
+  outline: none;
+  border-color: var(--color-primary, #00d4ff);
+}
+
+/* Target Selector */
+.target-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.target-btn {
+  padding: 0.4rem 0.75rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--color-text, #e0e0e0);
+  font-size: 0.85rem;
+}
+
+.target-btn:hover {
+  border-color: var(--color-accent, #ff006e);
+  background: rgba(255, 0, 110, 0.1);
+}
+
+.target-btn.selected {
+  border-color: var(--color-accent, #ff006e);
+  background: rgba(255, 0, 110, 0.2);
+}
+
+.target-btn .target-name {
+  /* styles */
+}
+
+/* Execute Section */
+.execute-section {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.execute-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, var(--color-primary, #00d4ff), var(--color-secondary, #7b2cbf));
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.execute-btn:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.execute-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.preview {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.preview-label {
+  color: var(--color-text-dim, #888);
+  margin-right: 0.5rem;
+}
+
+.preview-text {
+  color: var(--color-primary, #00d4ff);
+}
