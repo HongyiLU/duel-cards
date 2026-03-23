@@ -1,6 +1,10 @@
-/* CardEffectEditor.css - v1.1 优化样式 */
+/* CardEffectEditor.css - v1.2 屏幕适配优化
+ * 以 1920x1080 为基准，支持多分辨率
+ */
 
+/* ==================== CSS 变量 ==================== */
 :root {
+  /* 颜色变量 */
   --color-primary: #00d4ff;
   --color-secondary: #7b2cbf;
   --color-gold: #ffd700;
@@ -8,43 +12,78 @@
   --color-text-dim: #888;
   --color-bg-dark: rgba(0, 0, 0, 0.3);
   --color-border: rgba(0, 212, 255, 0.2);
+  
+  /* 布局变量 - 基于 1920x1080 */
+  --layout-max-width: 1800px;
+  --sidebar-width: 280px;
+  --preview-width: 300px;
+  --content-gap: 1.5rem;
+  
+  /* 间距 */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  
+  /* 字体大小 */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.85rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  
+  /* 圆角 */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  
+  /* 阴影 */
+  --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+  --shadow-card: 0 4px 15px rgba(0, 212, 255, 0.3);
 }
 
 /* ==================== 主容器 ==================== */
 
 .card-effect-editor {
+  width: 100%;
   min-height: 100vh;
   background: linear-gradient(180deg, #0a0a0f 0%, #12121a 100%);
   color: var(--color-text);
-  padding: 20px;
+  padding: var(--spacing-md);
+  box-sizing: border-box;
 }
+
+/* ==================== 头部 ==================== */
 
 .editor-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1rem;
+  padding-bottom: var(--spacing-sm);
   border-bottom: 1px solid var(--color-border);
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-md);
+  max-width: var(--layout-max-width);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .editor-header h2 {
   margin: 0;
   color: var(--color-primary);
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl);
 }
 
 .save-btn {
-  padding: 0.75rem 2rem;
+  padding: var(--spacing-xs) var(--spacing-lg);
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   color: white;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+  box-shadow: var(--shadow-card);
 }
 
 .save-btn:hover {
@@ -56,26 +95,28 @@
 
 .editor-content {
   display: grid;
-  grid-template-columns: 280px 1fr 300px;
-  gap: 1.5rem;
-  max-width: 1600px;
+  grid-template-columns: var(--sidebar-width) 1fr var(--preview-width);
+  gap: var(--content-gap);
+  max-width: var(--layout-max-width);
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* ==================== 左侧：卡牌选择 ==================== */
 
 .card-selection {
   background: var(--color-bg-dark);
-  border-radius: 12px;
-  padding: 1rem;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-sm);
   border: 1px solid var(--color-border);
-  max-height: calc(100vh - 120px);
+  height: calc(100vh - 120px);
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .card-selection h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1rem;
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: var(--font-size-md);
   color: var(--color-primary);
 }
 
@@ -85,9 +126,9 @@
   align-items: center;
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.5rem 0.75rem;
-  margin-bottom: 1rem;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xs) 0.75rem;
+  margin-bottom: var(--spacing-sm);
 }
 
 .search-box:focus-within {
@@ -96,7 +137,7 @@
 
 .search-icon {
   margin-right: 0.5rem;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
 }
 
 .search-box input {
@@ -104,8 +145,9 @@
   background: transparent;
   border: none;
   color: var(--color-text);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   outline: none;
+  min-width: 0;
 }
 
 .search-box input::placeholder {
@@ -117,7 +159,7 @@
   border: none;
   color: var(--color-text-dim);
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   padding: 0.25rem;
 }
 
@@ -127,18 +169,18 @@
 
 /* 分组 */
 .card-section {
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-sm);
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  padding: var(--spacing-xs);
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   transition: background 0.2s;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   color: var(--color-text);
 }
 
@@ -147,23 +189,23 @@
 }
 
 .collapse-icon {
-  font-size: 0.7rem;
+  font-size: var(--font-size-xs);
   color: var(--color-text-dim);
 }
 
-/* 卡牌网格 */
+/* 卡牌网格 - 1920px 3-4列 */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: var(--spacing-xs);
 }
 
 .card-tile {
   position: relative;
   background: rgba(0, 0, 0, 0.3);
   border: 2px solid transparent;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   padding: 0.5rem;
   cursor: pointer;
   transition: all 0.2s;
@@ -198,7 +240,7 @@
 }
 
 .tile-name {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -213,7 +255,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  font-size: 0.7rem;
+  font-size: var(--font-size-xs);
   font-weight: bold;
 }
 
@@ -241,23 +283,26 @@
 
 .effect-configuration {
   background: var(--color-bg-dark);
-  border-radius: 12px;
-  padding: 1rem;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-sm);
   border: 1px solid var(--color-border);
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .effect-configuration h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1rem;
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: var(--font-size-md);
   color: var(--color-primary);
 }
 
 /* 选中卡牌预览 */
 .selected-card-preview {
   background: rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
   border: 1px solid rgba(255, 215, 0, 0.3);
   text-align: center;
 }
@@ -272,8 +317,8 @@
 .card-type-badge {
   background: rgba(0, 212, 255, 0.2);
   padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
 }
 
 .selected-card-preview .preview-cost {
@@ -285,12 +330,12 @@
   justify-content: center;
   border-radius: 50%;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
 }
 
 .selected-card-preview .preview-name {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: var(--font-size-lg);
   margin-bottom: 0.5rem;
 }
 
@@ -306,7 +351,7 @@
   align-items: center;
   gap: 0.25rem;
   padding: 0.25rem 0.75rem;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-weight: bold;
 }
 
@@ -320,12 +365,12 @@
 
 /* 触发时机选择 */
 .trigger-section {
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-sm);
 }
 
 .trigger-section h4 {
   margin: 0 0 0.75rem 0;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   color: var(--color-text-dim);
 }
 
@@ -342,7 +387,7 @@
   padding: 0.5rem 0.75rem;
   background: rgba(0, 0, 0, 0.3);
   border: 2px solid transparent;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition: all 0.2s;
   min-width: 60px;
@@ -359,18 +404,18 @@
 }
 
 .trigger-icon {
-  font-size: 1.25rem;
+  font-size: var(--font-size-lg);
   margin-bottom: 0.25rem;
 }
 
 .trigger-name {
-  font-size: 0.7rem;
+  font-size: var(--font-size-xs);
   color: var(--color-text);
 }
 
 /* 效果模板 */
 .template-selector {
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-sm);
 }
 
 .template-toggle-btn {
@@ -378,10 +423,10 @@
   padding: 0.6rem;
   background: rgba(123, 44, 191, 0.2);
   border: 1px dashed rgba(123, 44, 191, 0.5);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   color: var(--color-secondary);
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   transition: all 0.2s;
 }
 
@@ -397,7 +442,7 @@
   margin-top: 0.5rem;
   padding: 0.75rem;
   background: rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
 }
 
 .template-item {
@@ -407,7 +452,7 @@
   padding: 0.5rem;
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid transparent;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -419,23 +464,23 @@
 }
 
 .template-icon {
-  font-size: 1.25rem;
+  font-size: var(--font-size-lg);
   margin-bottom: 0.25rem;
 }
 
 .template-name {
-  font-size: 0.7rem;
+  font-size: var(--font-size-xs);
   color: var(--color-text);
 }
 
 /* 效果列表 */
 .effects-list {
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-sm);
 }
 
 .effects-list h4 {
   margin: 0 0 0.75rem 0;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   color: var(--color-text-dim);
 }
 
@@ -444,7 +489,7 @@
   text-align: center;
   color: var(--color-text-dim);
   background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
@@ -454,14 +499,14 @@
 
 .no-effects .hint {
   margin-top: 0.5rem;
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   opacity: 0.7;
 }
 
 /* 效果项 */
 .effect-item {
   background: rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   margin-bottom: 0.75rem;
   border: 1px solid rgba(123, 44, 191, 0.3);
   overflow: hidden;
@@ -496,16 +541,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: var(--font-size-xs);
   font-weight: bold;
 }
 
 .effect-icon {
-  font-size: 1.1rem;
+  font-size: var(--font-size-md);
 }
 
 .effect-name {
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   font-weight: 500;
 }
 
@@ -522,8 +567,8 @@
   color: var(--color-text-dim);
   cursor: pointer;
   padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.7rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
   transition: all 0.2s;
 }
 
@@ -543,7 +588,7 @@
   border: none;
   color: #ff3366;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   padding: 0.25rem 0.5rem;
   transition: color 0.2s;
 }
@@ -567,7 +612,7 @@
 }
 
 .field label {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   color: var(--color-text-dim);
 }
 
@@ -576,9 +621,9 @@
   padding: 0.5rem;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   color: var(--color-text);
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
 }
 
 .field select:focus,
@@ -593,7 +638,7 @@
   align-items: center;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
@@ -607,7 +652,7 @@
   color: var(--color-primary);
   cursor: pointer;
   padding: 0.5rem 0.75rem;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
   transition: background 0.2s;
 }
 
@@ -622,6 +667,7 @@
   text-align: center;
   padding: 0.5rem 0;
   width: 100%;
+  font-size: var(--font-size-sm);
 }
 
 .number-input-group input:focus {
@@ -634,10 +680,10 @@
   padding: 0.75rem;
   background: transparent;
   border: 2px dashed var(--color-primary);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   color: var(--color-primary);
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: var(--font-size-sm);
   transition: all 0.2s;
 }
 
@@ -650,14 +696,17 @@
 
 .effect-preview {
   background: var(--color-bg-dark);
-  border-radius: 12px;
-  padding: 1rem;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-sm);
   border: 1px solid var(--color-border);
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .effect-preview h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1rem;
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: var(--font-size-md);
   color: var(--color-primary);
 }
 
@@ -665,10 +714,10 @@
 .preview-card {
   background: linear-gradient(145deg, #1a1a25, #0d0d12);
   border: 2px solid #9ca3af;
-  border-radius: 12px;
-  padding: 1rem;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-sm);
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-sm);
 }
 
 .preview-top {
@@ -686,7 +735,7 @@
   justify-content: center;
   border-radius: 50%;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: var(--font-size-md);
 }
 
 .preview-middle {
@@ -706,11 +755,11 @@
 
 .preview-name {
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: var(--font-size-md);
 }
 
 .preview-type {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   color: var(--color-text-dim);
 }
 
@@ -722,7 +771,7 @@
   gap: 0.5rem;
   padding: 0.75rem;
   background: rgba(0, 0, 0, 0.3);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   min-height: 50px;
 }
 
@@ -732,15 +781,15 @@
   gap: 0.25rem;
   padding: 0.25rem 0.5rem;
   background: rgba(123, 44, 191, 0.2);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .effect-type-icon {
-  font-size: 1rem;
+  font-size: var(--font-size-md);
 }
 
 .effect-value {
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   font-weight: bold;
   color: var(--color-gold);
 }
@@ -748,37 +797,37 @@
 .preview-effects .no-effect {
   color: var(--color-text-dim);
   font-style: italic;
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
 }
 
 /* 效果描述预览 */
 .description-preview {
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-sm);
 }
 
 .description-preview h4 {
   margin: 0 0 0.5rem 0;
-  font-size: 0.85rem;
+  font-size: var(--font-size-xs);
   color: var(--color-text-dim);
 }
 
 .description-box {
   padding: 0.75rem;
   background: rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border-left: 3px solid var(--color-gold);
 }
 
 .description-text {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   line-height: 1.5;
   color: var(--color-text);
 }
 
 .no-description {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: var(--font-size-xs);
   color: var(--color-text-dim);
   font-style: italic;
 }
@@ -786,15 +835,15 @@
 /* 提示 */
 .trigger-hint h4 {
   margin: 0 0 0.5rem 0;
-  font-size: 0.85rem;
+  font-size: var(--font-size-xs);
   color: var(--color-text-dim);
 }
 
 .hint-content {
   padding: 0.75rem;
   background: rgba(0, 212, 255, 0.1);
-  border-radius: 8px;
-  font-size: 0.85rem;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
 }
 
 .hint-content p {
@@ -810,46 +859,177 @@
   font-weight: 500;
 }
 
-/* ==================== 响应式 ==================== */
+/* ==================== 响应式断点 ==================== */
 
-@media (max-width: 1200px) {
-  .editor-content {
-    grid-template-columns: 1fr 1fr;
-  }
-  
-  .card-selection {
-    grid-column: 1 / -1;
-    max-height: none;
+/* 超大屏幕 (>= 1600px) - 基准 1920x1080 */
+@media (min-width: 1600px) {
+  :root {
+    --layout-max-width: 1800px;
+    --sidebar-width: 280px;
+    --preview-width: 300px;
+    --content-gap: 1.5rem;
   }
   
   .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 大屏幕 (1200px - 1599px) */
+@media (min-width: 1200px) and (max-width: 1599px) {
+  :root {
+    --layout-max-width: 1400px;
+    --sidebar-width: 250px;
+    --preview-width: 280px;
+    --content-gap: 1.25rem;
+    --font-size-xl: 1.35rem;
+  }
+  
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .template-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media (max-width: 768px) {
+/* 中等屏幕 (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  :root {
+    --layout-max-width: 960px;
+    --sidebar-width: 220px;
+    --preview-width: 250px;
+    --content-gap: 1rem;
+    --font-size-xl: 1.25rem;
+  }
+  
   .editor-content {
-    grid-template-columns: 1fr;
+    grid-template-columns: var(--sidebar-width) 1fr;
+  }
+  
+  .effect-preview {
+    display: none; /* 中等屏幕隐藏预览 */
   }
   
   .card-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   
-  .effect-fields {
-    grid-template-columns: 1fr;
+  .template-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* 小屏幕 (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  :root {
+    --layout-max-width: 720px;
+    --sidebar-width: 200px;
+    --content-gap: 1rem;
+    --font-size-xl: 1.2rem;
+  }
+  
+  .editor-content {
+    grid-template-columns: var(--sidebar-width) 1fr;
+  }
+  
+  .effect-preview {
+    display: none;
+  }
+  
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .template-grid {
     grid-template-columns: repeat(3, 1fr);
   }
   
-  .trigger-options {
-    justify-content: center;
+  .effect-fields {
+    grid-template-columns: 1fr 80px 1fr;
   }
 }
 
-/* ==================== 滚动条 ==================== */
+/* 超小屏幕 (< 768px) - 移动端 */
+@media (max-width: 767px) {
+  :root {
+    --layout-max-width: 100%;
+    --sidebar-width: 100%;
+    --preview-width: 100%;
+    --content-gap: 1rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.25rem;
+    --font-size-xl: 1.15rem;
+  }
+  
+  .card-effect-editor {
+    padding: var(--spacing-sm);
+  }
+  
+  .editor-header {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-align: center;
+  }
+  
+  .editor-header h2 {
+    font-size: var(--font-size-lg);
+  }
+  
+  .save-btn {
+    width: 100%;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  
+  .editor-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  .card-selection,
+  .effect-configuration,
+  .effect-preview {
+    height: auto;
+    max-height: none;
+  }
+  
+  .card-selection {
+    order: 1;
+  }
+  
+  .effect-configuration {
+    order: 2;
+  }
+  
+  .effect-preview {
+    order: 3;
+    display: block; /* 移动端显示预览 */
+  }
+  
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .template-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .effect-fields {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .trigger-options {
+    justify-content: center;
+  }
+  
+  .preview-stats {
+    gap: 1rem;
+  }
+}
+
+/* ==================== 滚动条样式 ==================== */
 
 .card-selection::-webkit-scrollbar,
 .effect-configuration::-webkit-scrollbar,
@@ -869,4 +1049,26 @@
 .effect-preview::-webkit-scrollbar-thumb {
   background: var(--color-primary);
   border-radius: 3px;
+}
+
+/* Firefox 滚动条 */
+.card-selection,
+.effect-configuration,
+.effect-preview {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== 工具类 ==================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
