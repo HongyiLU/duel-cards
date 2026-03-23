@@ -81,9 +81,10 @@ export function CardEditor({ initialCardId }: CardEditorProps) {
   // UI 状态
   const [isCreatingNew, setIsCreatingNew] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [isSelectMode, setIsSelectMode] = useState(false); // 选择模式（用于批量删除）
   const [collapsedSections, setCollapsedSections] = useState<Record<string, boolean>>({
     creature: false,
-    spell: true,
+    spell: false,
   });
   
   // 加载卡牌数据
@@ -131,23 +132,23 @@ export function CardEditor({ initialCardId }: CardEditorProps) {
   
   // 选择卡牌
   const handleSelectCard = useCallback((cardId: string) => {
-    setSelectedCardId(cardId);
-    setSelectedIds(new Set());
-  }, []);
-  
-  // 切换选择（多选删除用）
-  const handleToggleSelect = useCallback((cardId: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setSelectedIds(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(cardId)) {
-        newSet.delete(cardId);
-      } else {
-        newSet.add(cardId);
-      }
-      return newSet;
-    });
-  }, []);
+    if (isSelectMode) {
+      // 选择模式下切换选中状态
+      setSelectedIds(prev => {
+        const newSet = new Set(prev);
+        if (newSet.has(cardId)) {
+          newSet.delete(cardId);
+        } else {
+          newSet.add(cardId);
+        }
+        return newSet;
+      });
+    } else {
+      // 正常模式下选中卡牌
+      setSelectedCardId(cardId);
+      setSelectedIds(new Set());
+    }
+  }, [isSelectMode]);
   
   // 新增卡牌
   const handleCreateNew = useCallback(() => {
@@ -280,6 +281,20 @@ export function CardEditor({ initialCardId }: CardEditorProps) {
       <div className="editor-header">
         <h2>🎴 卡牌编辑器 v2.0</h2>
         <div className="header-actions">
+          <button className="btn-add-header" onClick={handleCreateNew}>
+            ➕ 新增卡牌
+          </button>
+          <button 
+            className={`btn-select-mode ${isSelectMode ? 'active' : ''}`}
+            onClick={() => {
+              setIsSelectMode(!isSelectMode);
+              if (isSelectMode) {
+                setSelectedIds(new Set());
+              }
+            }}
+          >
+            {isSelectMode ? '✓ 选择模式' : '○ 选择模式'}
+          </button>
           <button className="btn-secondary" onClick={handleReset}>
             🔄 重置
           </button>
@@ -297,8 +312,7 @@ export function CardEditor({ initialCardId }: CardEditorProps) {
         {/* ==================== 左侧：卡牌列表 ==================== */}
         <div className="card-selection">
           <div className="section-header-row">
-            <h3>📋 卡牌列表</h3>
-            <button className="btn-add" onClick={handleCreateNew}>+ 新增</button>
+            <h3>📋 卡牌列表 {isSelectMode && <span className="select-mode-hint">(点击选中)</span>}</h3>
           </div>
           
           {/* 搜索框 */}
@@ -315,14 +329,21 @@ export function CardEditor({ initialCardId }: CardEditorProps) {
             )}
           </div>
           
-          {/* 删除按钮 */}
-          {selectedIds.size > 0 && (
+          {/* 删除按钮 - 选择模式下显示 */}
+          {isSelectMode && selectedIds.size > 0 && (
             <button 
               className="btn-delete-selected"
               onClick={handleDeleteSelected}
             >
               🗑️ 删除选中 ({selectedIds.size})
             </button>
+          )}
+          
+          {/* 选择模式提示 */}
+          {isSelectMode && (
+            <div className="select-mode-tip">
+              点击卡牌进行多选，选完后再点击「删除选中」
+            </div>
           )}
           
           {/* 生物卡 */}
@@ -336,9 +357,8 @@ export function CardEditor({ initialCardId }: CardEditorProps) {
                 {creatureCards.map(card => (
                   <div
                     key={card.id}
-                    className={`card-item ${selectedCardId === card.id ? 'selected' : ''} ${selectedIds.has(card.id) ? 'multi-selected' : ''}`}
+                    className={`card-item ${selectedCardId === card.id && !isSelectMode ? 'selected' : ''} ${selectedIds.has(card.id) ? 'multi-selected' : ''}`}
                     onClick={() => handleSelectCard(card.id)}
-                    onContextMenu={(e) => handleToggleSelect(card.id, e)}
                   >
                     <div 
                       className="card-item-indicator"
@@ -370,9 +390,8 @@ export function CardEditor({ initialCardId }: CardEditorProps) {
                 {spellCards.map(card => (
                   <div
                     key={card.id}
-                    className={`card-item ${selectedCardId === card.id ? 'selected' : ''} ${selectedIds.has(card.id) ? 'multi-selected' : ''}`}
+                    className={`card-item ${selectedCardId === card.id && !isSelectMode ? 'selected' : ''} ${selectedIds.has(card.id) ? 'multi-selected' : ''}`}
                     onClick={() => handleSelectCard(card.id)}
-                    onContextMenu={(e) => handleToggleSelect(card.id, e)}
                   >
                     <div 
                       className="card-item-indicator"
