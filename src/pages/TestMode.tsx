@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import { BattleTester } from '../components/tester';
-import { CardEffectEditor } from '../components/editor/CardEffectEditor';
+import { CardEditor } from '../components/editor/CardEditor';
 import './TestMode.css';
 
 type TestMode = 'battle' | 'editor';
@@ -24,13 +24,13 @@ export function TestMode() {
           className={`tab ${mode === 'editor' ? 'active' : ''}`}
           onClick={() => setMode('editor')}
         >
-          ✏️ 效果编辑
+          ✏️ 卡牌编辑
         </button>
       </div>
       
       <div className="mode-content">
         {mode === 'battle' && <BattleTester />}
-        {mode === 'editor' && <CardEffectEditor />}
+        {mode === 'editor' && <CardEditor />}
       </div>
     </div>
   );
