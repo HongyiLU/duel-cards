@@ -640,6 +640,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-sm);
   overflow: hidden;
+  min-width: 80px;
 }
 
 .number-input-group:focus-within {
@@ -654,6 +655,7 @@
   padding: 0.5rem 0.75rem;
   font-size: var(--font-size-md);
   transition: background 0.2s;
+  flex-shrink: 0;
 }
 
 .number-btn:hover {
@@ -661,17 +663,30 @@
 }
 
 .number-input-group input {
-  flex: 1;
+  flex: 1 1 auto;
   border: none;
   background: transparent;
   text-align: center;
-  padding: 0.5rem 0;
-  width: 100%;
+  padding: 0.5rem 0.25rem;
+  min-width: 40px;
+  max-width: 60px;
   font-size: var(--font-size-sm);
+  color: var(--color-text);
 }
 
 .number-input-group input:focus {
-  border: none;
+  outline: none;
+}
+
+/* 隐藏 number input 的 spinner 箭头 */
+.number-input-group input[type=number]::-webkit-outer-spin-button,
+.number-input-group input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.number-input-group input[type=number] {
+  -moz-appearance: textfield;
 }
 
 /* 添加效果按钮 */
